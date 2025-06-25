@@ -1,0 +1,82 @@
+# {{ns}} is the namespace for the NASA Ingenuity model in Gazebo. It is dynamically replaced in the launch using the fleet_config.yaml file).
+# It is used to differentiate between multiple instances of the model in the same world.
+# For example, if you have multiple NASA Ingenuity models, you can set {{ns}} to "nasa_ingenuity_1", "nasa_ingenuity_2",
+
+topics:
+  - topic: "/model/{{ns}}/pose"
+    type: "tf2_msgs/msg/TFMessage"
+    gz_type: "gz.msgs.Pose_V"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/tf"
+
+  - topic: "/model/{{ns}}/odometry"
+    type: "nav_msgs/msg/Odometry"
+    gz_type: "gz.msgs.Odometry"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/odometry"
+
+  - topic: "/model/{{ns}}/odometry_with_covariance"
+    type: "nav_msgs/msg/Odometry"
+    gz_type: "gz.msgs.Odometry"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/odometry_with_covariance"
+
+  - topic: "/model/{{ns}}/joint/MHS_TopBlades_v16/cmd_thrust"
+    type: "std_msgs/msg/Float64"
+    gz_type: "gz.msgs.Double"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/top_blades/thrust"
+
+  - topic: "/model/{{ns}}/joint/MHS_BottomBlades_v16/cmd_thrust"
+    type: "std_msgs/msg/Float64"
+    gz_type: "gz.msgs.Double"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/bottom_blades/thrust"
+
+  - topic: "/nasa_ingenuity/swashplate1_joint_cmd"
+    type: "std_msgs/msg/Float64"
+    gz_type: "gz.msgs.Double"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/swashplate_1/joint"
+
+  - topic: "/nasa_ingenuity/swashplate2_joint_cmd"
+    type: "std_msgs/msg/Float64"
+    gz_type: "gz.msgs.Double"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/swashplate_2/joint"
+
+  - topic: "/model/{{ns}}/battery/ingenuity_battery/state"
+    type: "sensor_msgs/msg/BatteryState"
+    gz_type: "gz.msgs.BatteryState"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/battery_state"
+
+  - topic: "/model/{{ns}}/battery/ingenuity_battery/recharge/start"
+    type: "std_msgs/msg/Bool"
+    gz_type: "gz.msgs.Boolean"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/battery_recharge_start"
+
+  - topic: "/nasa_ingenuity/camera"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/camera"
+
+  - topic: "/nasa_ingenuity/camera_info"
+    type: "sensor_msgs/msg/CameraInfo"
+    gz_type: "gz.msgs.CameraInfo"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/camera_info"
+
+  - topic: "/nasa_ingenuity/depth_camera"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/depth_camera"
+
+  - topic: "/nasa_ingenuity/depth_camera/points"
+    type: "sensor_msgs/msg/PointCloud2"
+    gz_type: "gz.msgs.PointCloudPacked"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/depth_camera/points"

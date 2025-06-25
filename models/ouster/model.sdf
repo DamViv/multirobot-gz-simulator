@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<sdf version="1.6" xmlns:xacro="http://ros.org/wiki/xacro">
+    <model name="ouster">
+
+    <!-- Define constants -->
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+    <xacro:property name="lasers" value="128"/>
+    <xacro:property name="samples" value="512"/>
+    <xacro:property name="min_range" value="0.1"/>
+    <xacro:property name="max_range" value="30.0"/>
+    <xacro:property name="noise" value="0.008"/>
+    <xacro:property name="min_angle" value="-${M_PI}"/>
+    <xacro:property name="max_angle" value="${M_PI}"/>
+    <xacro:property name="vfov_min" value="-0.785"/>    
+    <xacro:property name="vfov_max" value="0.785"/>
+
+    <xacro:property name="topic_points" value="/os_sensor/points"/>    
+    <xacro:property name="topic_imu" value="/os_sensor/imu "/>
+
+
+    <link name="base_link" />
+       
+    <joint name="os_sensor_mount_joint" type="fixed">        
+        <parent> base_link </parent>
+        <child> os_sensor </child>
+    </joint>
+
+    <link name="os_sensor">
+        <inertial>
+            <mass value="0.33"/>
+            <origin xyz="0 0 0.0365" rpy="0 0 0" />
+            <inertia ixx="0.000241148" ixy="0" ixz="0"
+            iyy="0.000241148" iyz="0" izz="0.000264"/>
+        </inertial>
+        <collision name="base_collision">
+            <origin xyz="0 0 0.0365" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.04" length="0.073"/>
+            </geometry>
+        </collision>
+        <visual name="base_visual">
+            <origin xyz="0 0 0.0" rpy="0 0 1.5707" />
+            <geometry>
+                <mesh>
+                    <uri>meshes/os1_64.dae</uri>
+                </mesh>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="os_imu"></>
+    <link name="os_lidar"></>
+
+
+    <joint name="os_sensor_imu_link_joint" type="fixed">
+        <parent> link=os_sensor </parent>
+        <child> link=os_imu </child>
+        <origin xyz="0.006253 -0.011775 0.007645" rpy="0 0 0" />
+        </joint>
+        <gazebo reference="os_imu">
+    </gazebo>
+
+    <joint name="os_sensor_lidar_link_joint" type="fixed">
+        <parent> link=os_sensor </parent>
+        <child> link=os_lidar </child>
+        <origin xyz="0.0 0.0 0.03618" rpy="0 0 0" />
+    </joint>
+
+
+
+    <gazebo reference="os_lidar">
+        <sensor type="gpu_lidar" name="os_lidar"> 
+            <pose> 0 0 0 0 0 0</pose>       
+            <update_rate>${hz}</update_rate>        
+            <topic>${topic_points}</topic>
+            <lidar>
+                <scan>
+                    <horizontal>
+                        <samples>${samples}</samples>
+                        <resolution>1</resolution>
+                        <min_angle>${min_angle}</min_angle>
+                        <max_angle>${max_angle}</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>${lasers}</samples>
+                        <resolution>1</resolution>
+                        <min_angle>${vfov_min}</min_angle>
+                        <max_angle>${vfov_max}</max_angle>
+                    </vertical>
+                </scan>
+                <range>
+                    <min>${min_range}</min>
+                    <max>${max_range}</max>
+                    <resolution>0.03</resolution>
+                </range>
+            </lidar>
+            <always_on>1</always_on>
+            <visualize>true</visualize>
+            <gz_frame_id>os_lidar</gz_frame_id>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="base_link">
+        <sensor type="imu" name="os_imu">      
+            <update_rate>100</update_rate>
+            <visualize>true</visualize>
+            <topic>${topic_imu}</topic>
+            <always_on>1</always_on>
+            <gz_frame_id>os_imu</gz_frame_id>
+        </sensor>
+    </gazebo>
+
+
+    </model>
+</sdf>

@@ -197,6 +197,7 @@ def generate_launch_description():
     ##########################################################################################
     ## TF relay : merge all the namespaced TFs into a single TF tree
     ##########################################################################################
+    # https://github.com/swarmBots-ipa/tf_relay
     tf_relay = Node(        
         package="tf_relay",
         executable="relay",        

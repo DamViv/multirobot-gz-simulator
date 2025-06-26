@@ -77,7 +77,9 @@ ros2 launch multirobot_gz_simulator fleet.launch.py
 - ROS 2 Humble or newer
 - `ros_gz_sim`, `ros_gz_bridge`
 - Gazebo Fortress or Garden
+- 'tf_relay' from https://github.com/swarmBots-ipa/tf_relay
 
+Make use of models from spaceros_gz_demos
 
 ## License
 

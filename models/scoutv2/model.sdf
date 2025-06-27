@@ -50,7 +50,7 @@
                 <always_on>1</always_on>
                 <update_rate>50</update_rate>
                 <imu>
-                    <enable_orientation>0</enable_orientation>
+                    <enable_orientation>1</enable_orientation>
                     <angular_velocity>
                         <x>
                             <noise type="gaussian">
@@ -122,87 +122,6 @@
                         </z>
                     </linear_acceleration>
                 </imu>
-            </sensor>
-
-
-
-            <visual name="camera_visual">
-                <pose>0.43 0 0.26 0 0 0</pose>
-                <geometry>
-                    <box>
-                        <size>0.02 0.02 0.02</size>
-                    </box>
-                </geometry>
-            </visual>
-            <sensor name="camera_front" type="camera">
-                <pose>0.43 0 0.26 0 0 0</pose>
-                <always_on>1</always_on>
-                <update_rate>20</update_rate>
-                <camera name="camera_front">
-                    <!--<cameraInfoTopicName>camera_info</cameraInfoTopicName>-->
-                    <!--<hackBaseline>0.07</hackBaseline>-->
-                    <horizontal_fov>1.0472</horizontal_fov>
-                    <lens>
-                        <intrinsics>
-                          <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
-                          <fx>277.1</fx>
-                          <fy>277.1</fy>
-                          <!-- cx = ( width + 1 ) / 2 -->
-                          <cx>160.5</cx>
-                          <!-- cy = ( height + 1 ) / 2 -->
-                          <cy>120.5</cy>
-                          <s>0</s>
-                        </intrinsics>
-                    </lens>
-                    <distortion>
-                        <k1>0.0</k1>
-                        <k2>0.0</k2>
-                        <k3>0.0</k3>
-                        <p1>0.0</p1>
-                        <p2>0.0</p2>
-                        <center>0.5 0.5</center>
-                    </distortion>
-                    <image>
-                        <width>320</width>
-                        <height>240</height>
-                        <format>R8G8B8</format>
-                    </image>
-                    <clip>
-                        <near>0.01</near>
-                        <far>300</far>
-                    </clip>
-                    <noise>
-                        <type>gaussian</type>
-                        <mean>0</mean>
-                        <stddev>0.007</stddev>
-                    </noise>
-                </camera>
-            </sensor>
-
-
-            <sensor name="front_laser" type="gpu_ray">
-                <pose>0.43 0 0.26 0 0 0</pose>
-                <update_rate>20</update_rate>
-                <lidar>
-                    <scan>
-                        <horizontal>
-                            <samples>720</samples>
-                            <resolution>1</resolution>
-                            <min_angle>-2.3562</min_angle>
-                            <max_angle>2.3562</max_angle>
-                        </horizontal>
-                    </scan>
-                    <range>
-                        <min>0.04</min>
-                        <max>5</max>
-                        <resolution>0.01</resolution>
-                    </range>
-                    <noise>
-                        <type>gaussian</type>
-                        <mean>0</mean>
-                        <stddev>0.01</stddev>
-                    </noise>
-                </lidar>
             </sensor>
         </link>
 
@@ -453,8 +372,125 @@
             <publish_model_pose>false</publish_model_pose>
             <use_pose_vector_msg>true</use_pose_vector_msg>
             <static_publisher>false</static_publisher>
-            <static_update_frequency>30</static_update_frequency>
+            <static_update_frequency>100</static_update_frequency>
         </plugin>
+
+
+
+        <joint name="zed2_sensor_joint" type="fixed">        
+            <parent> base_link </parent>
+            <child> zed2_sensor </child>
+        </joint>
+
+        <link name='zed2_sensor'>
+            <pose frame="">0.249 0 0.25 0 0 0</pose>
+            <inertial>
+                <pose>0 -0.0034448965461050169 0.03521019718236832 0 0 0</pose>
+                <mass>0.27001399999999998</mass>
+                <inertia>
+                <ixx>0.0005451135904549877</ixx>
+                <ixy>0</ixy>
+                <ixz>1.4441626029938701e-06</ixz>
+                <iyy>0.00012750700753542759</iyy>
+                <iyz>-3.2747781792693913e-05</iyz>
+                <izz>0.00046335669303036801</izz>
+                </inertia>
+            </inertial>
+            <collision name="zed2_sensor_collision">
+                <geometry>
+                    <box>
+                    <size>0.01 0.01 0.01</size> <!-- Tiny box, just to satisfy physics engine -->
+                    </box>
+                </geometry>
+            </collision>
+            <visual name='base_link_fixed_joint_lump__zed2_sensor_visual_1'>
+                <pose>0 0 0.048599999999999997 0 0.032637657000000014 0</pose>
+                <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://zed2i/meshes/ZED2.dae</uri>
+                </mesh>
+                </geometry>
+            </visual>
+            
+            <sensor name='zed2_imu_sensor' type='imu'>
+                <update_rate>50</update_rate>
+                <visualize>true</visualize>        
+                <always_on>true</always_on>
+                <pose>0.0099946700000000006 0.059999999999999998 0.048273700000000003 0 0.032637699999999999 0</pose>        
+                <imu/>
+            </sensor>    
+            <sensor name='zed2_left_camera' type='camera'>
+                <camera name='zed2_left'>
+                <horizontal_fov>1.7633000000000001</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.050000000000000003</near>
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0</mean>
+                    <stddev>0.0070000000000000001</stddev>
+                </noise>
+                </camera>
+                <always_on>true</always_on>
+                <update_rate>10</update_rate>
+                <visualize>true</visualize>        
+                <pose>0.0099946700000000006 0.059999999999999998 0.048273700000000003 0 0.032637699999999999 0</pose>        
+            </sensor>
+            <sensor name='zed2_depth_camera' type='depth_camera'>
+                <always_on>true</always_on>
+                <update_rate>10</update_rate>
+                <visualize>true</visualize>
+                <camera name='zed2_depth'>
+                <horizontal_fov>1.274</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R_FLOAT32</format>
+                </image>
+                <clip>
+                    <near>0.29999999999999999</near>
+                    <far>15</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+                </camera>        
+                <pose>0.0099946700000000006 0.059999999999999998 0.048273700000000003 0 0.032637699999999999 0</pose>                
+            </sensor>      
+            <sensor name='zed2_right_camera' type='camera'>
+                <camera name='zed2_right'>
+                <horizontal_fov>1.7633000000000001</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0</mean>
+                    <stddev>0.0070000000000000001</stddev>
+                </noise>
+                </camera>
+                <always_on>true</always_on>
+                <update_rate>10</update_rate>
+                <visualize>true</visualize>        
+                <pose>0.0099946700000000006 -0.059999999999999998 0.048273700000000003 0 0.032637699999999999 0</pose>        
+            </sensor>
+        </link>
+
 
 
 
@@ -467,7 +503,6 @@
             <parent> base_link </parent>
             <child> os_sensor_pole </child>
         </joint>
-
 
         <link name="os_sensor">
             <pose frame="">0. -0. 0.50 0 0 0</pose>
@@ -538,17 +573,10 @@
 
 
 
-
-        
-
-
-
-
-
         <link name="os_imu">
             <sensor name="os_imu" type="imu">      
                 <always_on>1</always_on>
-                <update_rate>100</update_rate>
+                <update_rate>50</update_rate>
                 <visualize>true</visualize>
             </sensor>
         </link>

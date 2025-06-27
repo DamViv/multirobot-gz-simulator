@@ -2,14 +2,20 @@
 <!--DOESN'T WORK WITH GAZEBO FORTRESS, FOR THIS WORLD USE GAZEBO GARDEN-->
 <sdf version="1.8">
   <world name="leo_marsyard">
-    <physics name="1ms" type="ignored">
+    <!-- <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
       <dart>
         <collision_detector>bullet</collision_detector>
       </dart>
+    </physics> -->
+
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.01</max_step_size> <!-- instead of 0.001-->
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
     </physics>
-    
+
     <plugin
       filename="gz-sim-physics-system"
       name="gz::sim::systems::Physics">
@@ -60,7 +66,7 @@
       <elevation>0</elevation>
     </spherical_coordinates> -->
 
-    <include>
+    <!-- <include>
       <name> R_1 </name>
       <pose>0 0 5 0 0 0</pose>
       <uri> scoutv2 </uri>
@@ -86,7 +92,7 @@
           <robot_base_frame> R_2 </robot_base_frame>            
       </plugin>
     
-    </include>
+    </include> -->
 
     <!-- <include>
       <uri> nasa_perseverance </uri>

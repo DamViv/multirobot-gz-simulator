@@ -1,0 +1,173 @@
+<sdf version='1.11'>
+  <model name='zed2'>
+    <link name='base_link'>
+      <inertial>
+        <pose>0 -0.0034448965461050169 0.03521019718236832 0 0 0</pose>
+        <mass>0.27001399999999998</mass>
+        <inertia>
+          <ixx>0.0005451135904549877</ixx>
+          <ixy>0</ixy>
+          <ixz>1.4441626029938701e-06</ixz>
+          <iyy>0.00012750700753542759</iyy>
+          <iyz>-3.2747781792693913e-05</iyz>
+          <izz>0.00046335669303036801</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_fixed_joint_lump__zed2_camera_center_collision_1'>
+        <pose>0 0 0.048599999999999997 0 0.032637657000000014 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://zed2i/meshes/ZED2.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_fixed_joint_lump__zed2_camera_center_visual_1'>
+        <pose>0 0 0.048599999999999997 0 0.032637657000000014 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://zed2i/meshes/ZED2.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      
+      <sensor name='zed2_imu_sensor' type='imu'>
+        <update_rate>50</update_rate>
+        <visualize>true</visualize>        
+        <always_on>true</always_on>
+        <pose>0.0099946700000000006 0.059999999999999998 0.048273700000000003 0 0.032637699999999999 0</pose>        
+        <imu/>
+      </sensor>    
+      <sensor name='zed2_left_camera' type='camera'>
+        <camera name='zed2_left'>
+          <horizontal_fov>1.7633000000000001</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.050000000000000003</near>
+            <far>300</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.0070000000000000001</stddev>
+          </noise>
+        </camera>
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <visualize>true</visualize>        
+        <pose>0.0099946700000000006 0.059999999999999998 0.048273700000000003 0 0.032637699999999999 0</pose>        
+      </sensor>
+      <sensor name='zed2_depth_camera' type='depth_camera'>
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <visualize>true</visualize>
+        <camera name='zed2_depth'>
+          <horizontal_fov>1.274</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R_FLOAT32</format>
+          </image>
+          <clip>
+            <near>0.29999999999999999</near>
+            <far>15</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </camera>        
+        <pose>0.0099946700000000006 0.059999999999999998 0.048273700000000003 0 0.032637699999999999 0</pose>                
+      </sensor>      
+      <sensor name='zed2_right_camera' type='camera'>
+        <camera name='zed2_right'>
+          <horizontal_fov>1.7633000000000001</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.0070000000000000001</stddev>
+          </noise>
+        </camera>
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <visualize>true</visualize>        
+        <pose>0.0099946700000000006 -0.059999999999999998 0.048273700000000003 0 0.032637699999999999 0</pose>        
+      </sensor>
+    </link>
+    <frame name='zed2_baro_joint' attached_to='zed2_camera_center'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_baro_link' attached_to='zed2_baro_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_left_camera_optical_joint' attached_to='zed2_left_camera_frame'>
+      <pose>0 0 0 -1.5707963267948959 -5.5511151231257827e-17 -1.5707963267948959</pose>
+    </frame>
+    <frame name='zed2_left_camera_optical_frame' attached_to='zed2_left_camera_optical_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_temp_left_joint' attached_to='zed2_left_camera_frame'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_temp_left_link' attached_to='zed2_temp_left_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_left_camera_joint' attached_to='zed2_camera_center'>
+      <pose>0.01 0.059999999999999998 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_left_camera_frame' attached_to='zed2_left_camera_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_mag_joint' attached_to='zed2_camera_center'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_mag_link' attached_to='zed2_mag_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_right_camera_optical_joint' attached_to='zed2_right_camera_frame'>
+      <pose>0 0 0 -1.5707963267948959 -5.5511151231257827e-17 -1.5707963267948959</pose>
+    </frame>
+    <frame name='zed2_right_camera_optical_frame' attached_to='zed2_right_camera_optical_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_temp_right_joint' attached_to='zed2_right_camera_frame'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_temp_right_link' attached_to='zed2_temp_right_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_right_camera_joint' attached_to='zed2_camera_center'>
+      <pose>0.01 -0.059999999999999998 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_right_camera_frame' attached_to='zed2_right_camera_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_camera_center_joint' attached_to='zed2'>
+      <pose>0 0 0.048599999999999997 0 0.032637657000000014 0</pose>
+    </frame>
+    <frame name='zed2_camera_center' attached_to='zed2_camera_center_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2_tilt_head_joint' attached_to='base_link'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='zed2' attached_to='zed2_tilt_head_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+</sdf>

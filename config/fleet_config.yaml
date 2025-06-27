@@ -3,18 +3,19 @@
 # moon.sdf / moon 
 # mars.sdf / mars 
 # inspection.sdf / default
-world_file: inspection.sdf
-world_name: default                # for topic bridge (dependant of the environment name)
+# marsyard2022.sdf / leo_marsyard
+world_file: marsyard2022.sdf
+world_name: leo_marsyard                # for topic bridge (dependant of the environment name)
 
 ## Robot fleet properties
 robot_ns: fleet                 # for tf relay
 robots:
 - name: fleet_0
   type: scoutv2
-  pose: [0, 0, 5, 0, 0, 0]
+  pose: [0, 0, 3.5, 0, 0, 0]
 - name: fleet_1
   type: scoutv2
-  pose: [2, 2, 5, 0, 0, 0]
+  pose: [2, 2, 3.5, 0, 0, 0]
 - name: fleet_2
   type: nasa_ingenuity
   pose: [2, -2.5, 3.6, 3.14, 0, 0]  

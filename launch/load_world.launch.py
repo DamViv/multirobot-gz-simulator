@@ -3,7 +3,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable, IncludeLaunchDescription
 from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-
+from launch.substitutions import TextSubstitution
 
 def generate_launch_description():
     return LaunchDescription([
@@ -22,8 +22,9 @@ def generate_launch_description():
                 ])
             ),
             launch_arguments={
-                'gz_args': [LaunchConfiguration('world_file')],
-                'on_exit_shutdown': 'True'
+                'gz_args': [TextSubstitution(text='-r -s '), LaunchConfiguration('world_file')],
+                'on_exit_shutdown': 'True',
+                'gui': 'false', 
             }.items(),
         ),
     ])

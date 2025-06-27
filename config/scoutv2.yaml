@@ -2,6 +2,8 @@
 # It is used to differentiate between multiple instances of the model in the same world.
 # For example, if you have multiple Scout V2 models, you can set {{ns}} to "scoutv2_1", "scoutv2_2", etc.
 topics:
+
+  # Controle related topics
   - topic: "/model/{{ns}}/cmd_vel"
     type: "geometry_msgs/msg/Twist"
     gz_type: "gz.msgs.Twist"
@@ -32,6 +34,8 @@ topics:
     direction: "ros_to_gz"
     remap: "/{{ns}}/tf_static"
 
+
+  # Ouster realted topics
   - topic: "/world/{{world}}/model/{{ns}}/link/os_imu/sensor/os_imu/imu"
     type: "sensor_msgs/msg/Imu"
     gz_type: "gz.msgs.IMU"
@@ -50,32 +54,61 @@ topics:
     direction: "gz_to_ros"
     remap: "/{{ns}}/os_lidar/points"
 
-  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/front_laser/scan"
-    type: "sensor_msgs/msg/LaserScan"
-    gz_type: "gz.msgs.LaserScan"
-    direction: "gz_to_ros"
-    remap: "/{{ns}}/front_lidar/scan"
 
-  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/front_laser/scan/points"
-    type: "sensor_msgs/msg/PointCloud2"
-    gz_type: "gz.msgs.PointCloudPacked"
-    direction: "gz_to_ros"
-    remap: "/{{ns}}/front_lidar/points"
-
-  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/camera_front/camera_info"
-    type: "sensor_msgs/msg/CameraInfo"
-    gz_type: "gz.msgs.CameraInfo"
-    direction: "gz_to_ros"
-    remap: "/{{ns}}/camera_front/camera_info"
-
-  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/camera_front/image"
-    type: "sensor_msgs/msg/Image"
-    gz_type: "gz.msgs.Image"
-    direction: "gz_to_ros"
-    remap: "/{{ns}}/camera_front/image"
-
-  - topic: "/world/{{world}}/model/{{ns}}/link/sensor/imu_sensor/imu"
+  # Simple IMU related topics
+  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/imu_sensor/imu"
     type: "sensor_msgs/msg/Imu"
     gz_type: "gz.msgs.IMU"
     direction: "gz_to_ros"
     remap: "/{{ns}}/imu"
+
+
+  # ZED2i related topics
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_imu_sensor/imu"
+    type: "sensor_msgs/msg/Imu"
+    gz_type: "gz.msgs.IMU"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/imu"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_left_camera/image"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/left_camera/image"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_left_camera/camera_info"
+    type: "sensor_msgs/msg/CameraInfo"
+    gz_type: "gz.msgs.CameraInfo"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/left_camera/camera_info"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_right_camera/image"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/right_camera/image"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_right_camera/camera_info"
+    type: "sensor_msgs/msg/CameraInfo"
+    gz_type: "gz.msgs.CameraInfo"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/right_camera/camera_info"
+
+  # Added virtual depth sensor for Zed2i
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_depth_camera/depth_image"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/depth_camera/depth_image"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_depth_camera/camera_info"
+    type: "sensor_msgs/msg/CameraInfo"
+    gz_type: "gz.msgs.CameraInfo"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/depth_camera/camera_info"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_depth_camera/depth_image/points"
+    type: "sensor_msgs/msg/PointCloud2"
+    gz_type: "gz.msgs.PointCloudPacked"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/depth_camera/points"

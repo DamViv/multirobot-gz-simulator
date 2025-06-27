@@ -41,17 +41,23 @@
       <visualize>false</visualize>
     </light>
 
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.01</max_step_size> <!-- instead of 0.001-->
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+    </physics>
+
     <include>
       <uri> martian_surface </uri>
     </include>
 
-    <include>
+    <!-- <include>
       <uri> nasa_perseverance </uri>
     </include>
 
     <include>
       <uri> nasa_ingenuity </uri>
-    </include>
+    </include> -->
 
   </world>
 </sdf>

@@ -123,10 +123,11 @@
       <direction>-0.5 -0.5 -1</direction>
     </light>
     <physics name='default_physics' default='0' type='ode'>
-      <max_step_size>0.001</max_step_size>
+      <max_step_size>0.01</max_step_size> <!-- instead of 0.001-->
       <real_time_factor>1</real_time_factor>
-      <real_time_update_rate>1000</real_time_update_rate>
+      <real_time_update_rate>100</real_time_update_rate>
     </physics>
+ 
     <scene>
       <ambient>1 1 1 1</ambient>
       <background>1 1 1 1</background>

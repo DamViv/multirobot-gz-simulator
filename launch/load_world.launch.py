@@ -22,7 +22,7 @@ def generate_launch_description():
                 ])
             ),
             launch_arguments={
-                'gz_args': [TextSubstitution(text='-r -s '), LaunchConfiguration('world_file')],
+                'gz_args': [TextSubstitution(text=''), LaunchConfiguration('world_file')],
                 'on_exit_shutdown': 'True',
                 'gui': 'false', 
             }.items(),

@@ -3,9 +3,10 @@
 # moon.sdf / moon 
 # mars.sdf / mars 
 # inspection.sdf / default
-# marsyard2022.sdf / leo_marsyard
-world_file: marsyard2022.sdf
-world_name: leo_marsyard                # for topic bridge (dependant of the environment name)
+# marsyard2022.sdf / marsyard2022
+# marsyard2020_walls.sdf / marsyard2020_walls
+world_file: marsyard2020_walls.sdf
+world_name: marsyard2020_walls                # for topic bridge (dependant of the environment name) - noramly the same as world_file... but not always
 
 ## Robot fleet properties
 robot_ns: fleet                 # for tf relay

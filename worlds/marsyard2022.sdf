@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--DOESN'T WORK WITH GAZEBO FORTRESS, FOR THIS WORLD USE GAZEBO GARDEN-->
 <sdf version="1.8">
-  <world name="leo_marsyard">
+  <world name="marsyard2022">
     <!-- <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>

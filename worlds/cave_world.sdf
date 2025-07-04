@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version='1.7'>
-  <world name='default'>
+  <world name='cave_world'>
     <plugin
       filename="gz-sim-physics-system"
       name="gz::sim::systems::Physics">

@@ -1,7 +1,31 @@
 <?xml version="1.0" ?>
 <!--DOESN'T WORK WITH GAZEBO FORTRESS, FOR THIS WORLD USE GAZEBO GARDEN-->
 <sdf version="1.8">
-  <world name="leo_marsyard">
+  <world name="indoor">
+
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin 
+      filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    <plugin
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+
     <physics name='default_physics' default='0' type='ode'>
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
@@ -30,30 +54,9 @@
     </audio>
     <wind/>
     
-    <plugin
-      filename="gz-sim-physics-system"
-      name="gz::sim::systems::Physics">
-    </plugin>
-    <plugin
-      filename="gz-sim-sensors-system"
-      name="gz::sim::systems::Sensors">
-      <render_engine>ogre2</render_engine>
-    </plugin>
-    <plugin 
-      filename="gz-sim-imu-system"
-      name="gz::sim::systems::Imu">
-      <render_engine>ogre2</render_engine>
-    </plugin>
-    <plugin
-      filename="gz-sim-scene-broadcaster-system"
-      name="gz::sim::systems::SceneBroadcaster">
-    </plugin>
-    <plugin
-      filename="gz-sim-user-commands-system"
-      name="gz::sim::systems::UserCommands">
-    </plugin>
 
-    <gui fullscreen='false'>
+
+    <!-- <gui fullscreen='false'>
       <plugin name='3D View' filename='GzScene3D'>
         <gz-gui>
           <title>3D View</title>
@@ -62,8 +65,8 @@
         </gz-gui>
         <engine>ogre2</engine>
         <scene>scene</scene>
-        <!-- <ambient_light>0.4 0.4 0.4</ambient_light> -->
-        <!-- <background_color>0.5 0.8 0.95</background_color> -->
+        <ambient_light>0.4 0.4 0.4</ambient_light>
+        <background_color>0.5 0.8 0.95</background_color>
         <camera_follow>
           <target>leo_rover</target>
           <p_gain>0.5</p_gain>
@@ -113,7 +116,7 @@
         </gz-gui>
         <topic>robot_0/cmd_vel_nav</topic>
       </plugin>
-      <!-- <plugin filename="ImageDisplay" name="Image Display 1">
+      <plugin filename="ImageDisplay" name="Image Display 1">
         <gz-gui>
           <title>RGBD: image</title>
           <property key="state" type="string">floating</property>
@@ -135,8 +138,8 @@
         </gz-gui>
         <topic>rgbd_camera/depth_image</topic>
         <topic_picker>true</topic_picker>
-      </plugin> -->
-    </gui>
+      </plugin>
+    </gui> -->
 
     <light name="sun" type="directional">
       <cast_shadows>true</cast_shadows>
@@ -153,20 +156,6 @@
     </light>
 
     <model name="indoor">
-      <pose frame=''>0 0 0 0 0 0</pose>
-      <light type="directional" name="sun">
-        <cast_shadows>true</cast_shadows>
-        <pose>0 0 10 0 0 0</pose>
-        <diffuse>0.8 0.8 0.8 1</diffuse>
-        <specular>0.2 0.2 0.2 1</specular>
-        <attenuation>
-          <range>1000</range>
-          <constant>0.9</constant>
-          <linear>0.01</linear>
-          <quadratic>0.001</quadratic>
-        </attenuation>
-        <direction>-0.5 0.1 -0.9</direction>
-      </light>
       <include>
         <uri>model://indoor</uri>
       </include>

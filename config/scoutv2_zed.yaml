@@ -1,0 +1,106 @@
+# {{ns}} is the namespace of the robot, {{world}} is the name of the world (both are dynamically replaced in the launch using the fleet_config.yaml file).
+# It is used to differentiate between multiple instances of the model in the same world.
+# For example, if you have multiple Scout V2 models, you can set {{ns}} to "scoutv2_1", "scoutv2_2", etc.
+topics:
+
+  # Controle related topics
+  - topic: "/model/{{ns}}/cmd_vel"
+    type: "geometry_msgs/msg/Twist"
+    gz_type: "gz.msgs.Twist"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/cmd_vel"
+
+  - topic: "/model/{{ns}}/odometry"
+    type: "nav_msgs/msg/Odometry"
+    gz_type: "gz.msgs.Odometry"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/odometry"
+
+  - topic: "/model/{{ns}}/odometry_with_covariance"
+    type: "nav_msgs/msg/Odometry"
+    gz_type: "gz.msgs.Odometry"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/odometry_with_covariance"
+
+  - topic: "/model/{{ns}}/pose"
+    type: "tf2_msgs/msg/TFMessage"
+    gz_type: "gz.msgs.Pose_V"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/tf"
+
+  - topic: "/model/{{ns}}/pose_static"
+    type: "tf2_msgs/msg/TFMessage"
+    gz_type: "gz.msgs.Pose_V"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/tf_static"
+
+
+  # Simple IMU related topics
+  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/imu_sensor/imu"
+    type: "sensor_msgs/msg/Imu"
+    gz_type: "gz.msgs.IMU"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/imu"
+
+
+  # ZED2i related topics
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_imu_sensor/imu"
+    type: "sensor_msgs/msg/Imu"
+    gz_type: "gz.msgs.IMU"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/imu"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_left_camera/image"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/left_camera/image"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_left_camera/camera_info"
+    type: "sensor_msgs/msg/CameraInfo"
+    gz_type: "gz.msgs.CameraInfo"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/left_camera/camera_info"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_left_camera/depth_image"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/left_camera/depth_image"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_left_camera/points"
+    type: "sensor_msgs/msg/PointCloud2"
+    gz_type: "gz.msgs.PointCloudPacked"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/left_camera/points"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_right_camera/image"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/right_camera/image"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_right_camera/camera_info"
+    type: "sensor_msgs/msg/CameraInfo"
+    gz_type: "gz.msgs.CameraInfo"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/zed2i/right_camera/camera_info"
+
+  # # Added virtual depth sensor for Zed2i
+  # - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_depth_camera/depth_image"
+  #   type: "sensor_msgs/msg/Image"
+  #   gz_type: "gz.msgs.Image"
+  #   direction: "gz_to_ros"
+  #   remap: "/{{ns}}/zed2i/depth_camera/depth_image"
+
+  # - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_depth_camera/camera_info"
+  #   type: "sensor_msgs/msg/CameraInfo"
+  #   gz_type: "gz.msgs.CameraInfo"
+  #   direction: "gz_to_ros"
+  #   remap: "/{{ns}}/zed2i/depth_camera/camera_info"
+
+  # - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_depth_camera/points"
+  #   type: "sensor_msgs/msg/PointCloud2"
+  #   gz_type: "gz.msgs.PointCloudPacked"
+  #   direction: "gz_to_ros"
+  #   remap: "/{{ns}}/zed2i/depth_camera/points"

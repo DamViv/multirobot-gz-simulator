@@ -1,0 +1,61 @@
+# {{ns}} is the namespace of the robot, {{world}} is the name of the world (both are dynamically replaced in the launch using the fleet_config.yaml file).
+# It is used to differentiate between multiple instances of the model in the same world.
+# For example, if you have multiple Scout V2 models, you can set {{ns}} to "scoutv2_1", "scoutv2_2", etc.
+topics:
+
+  # Controle related topics
+  - topic: "/model/{{ns}}/cmd_vel"
+    type: "geometry_msgs/msg/Twist"
+    gz_type: "gz.msgs.Twist"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/cmd_vel"
+
+  - topic: "/model/{{ns}}/odometry"
+    type: "nav_msgs/msg/Odometry"
+    gz_type: "gz.msgs.Odometry"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/odometry"
+
+  - topic: "/model/{{ns}}/odometry_with_covariance"
+    type: "nav_msgs/msg/Odometry"
+    gz_type: "gz.msgs.Odometry"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/odometry_with_covariance"
+
+  - topic: "/model/{{ns}}/pose"
+    type: "tf2_msgs/msg/TFMessage"
+    gz_type: "gz.msgs.Pose_V"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/tf"
+
+  - topic: "/model/{{ns}}/pose_static"
+    type: "tf2_msgs/msg/TFMessage"
+    gz_type: "gz.msgs.Pose_V"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/tf_static"
+
+  # Simple IMU related topics
+  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/imu_sensor/imu"
+    type: "sensor_msgs/msg/Imu"
+    gz_type: "gz.msgs.IMU"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/imu"
+
+ # Ouster realted topics
+  - topic: "/world/{{world}}/model/{{ns}}/link/os_imu/sensor/os_imu/imu"
+    type: "sensor_msgs/msg/Imu"
+    gz_type: "gz.msgs.IMU"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/os_lidar/imu"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/os_lidar/sensor/os_lidar/scan"
+    type: "sensor_msgs/msg/LaserScan"
+    gz_type: "gz.msgs.LaserScan"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/os_lidar/scan"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/os_lidar/sensor/os_lidar/scan/points"
+    type: "sensor_msgs/msg/PointCloud2"
+    gz_type: "gz.msgs.PointCloudPacked"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/os_lidar/points"

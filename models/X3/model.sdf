@@ -33,7 +33,7 @@
                     </mesh>
                 </geometry>
             </visual>
-            <visual name="marker_visual_1">
+            <!-- <visual name="marker_visual_1">
                 <pose>-0.07 0 0.065 0 -0 0</pose>
                 <geometry>
                     <mesh>
@@ -83,9 +83,9 @@
                         <uri>model://X3/meshes/led.dae</uri>
                     </mesh>
                 </geometry>
-            </visual>
+            </visual> -->
 
-            <light name="right_light_source" type="spot">
+            <!-- <light name="right_light_source" type="spot">
                 <pose>0.01 -0.08 0.05 3.131592653589795 -1.5107899999999999 2.841592653589791</pose>
                 <attenuation>
                     <range>15</range>
@@ -138,7 +138,7 @@
                 </spot>
                 <direction>0 0 -1</direction>
                 <cast_shadows>1</cast_shadows>
-            </light>
+            </light> -->
 
             <sensor name="imu_sensor" type="imu">
                 <always_on>1</always_on>
@@ -251,7 +251,7 @@
             </sensor>
 
             <visual name="camera_visual">
-                <pose>0.1 0 0 0 0 0</pose>
+                <pose>0.1 0 0 0 0.78 0</pose>
                 <geometry>
                     <box>
                         <size>0.02 0.02 0.02</size>
@@ -260,7 +260,7 @@
             </visual>
 
             <sensor name="camera_front" type="rgbd_camera">
-                <pose>0.1 0 0 0 0 0</pose>
+                <pose>0.1 0 0 0 0.78 0</pose>
                 <always_on>1</always_on>
                 <update_rate>10</update_rate>
                 <camera name="camera_front">
@@ -664,9 +664,9 @@
         <commandSubTopic>gazebo/command/twist</commandSubTopic>
         <enableSubTopic>enable</enableSubTopic>
         <comLinkName>base_link</comLinkName>
-        <velocityGain>2.7 2.7 2.7</velocityGain>
-        <attitudeGain>2 3 0.15</attitudeGain>
-        <angularRateGain>0.4 0.52 0.18</angularRateGain>
+        <velocityGain>1.5 1.5 1.5</velocityGain>
+        <attitudeGain>1.0 1.0 0.1</attitudeGain>
+        <angularRateGain>0.2 0.3 0.1</angularRateGain>
         <maximumLinearAcceleration>2 2 2</maximumLinearAcceleration>
 
         <rotorConfiguration>
@@ -696,11 +696,7 @@
           </rotor>
         </rotorConfiguration>
       </plugin>
-      <!-- <plugin
-        filename="gz-sim-odometry-publisher-system"
-        name="gz::sim::systems::OdometryPublisher">
-        <dimensions>3</dimensions>
-      </plugin>   -->
+
       <plugin name='gz::sim::systems::OdometryPublisher' filename='gz-sim-odometry-publisher-system'>
           <dimensions>3</dimensions>
           <odom_publish_frequency>10.0</odom_publish_frequency>

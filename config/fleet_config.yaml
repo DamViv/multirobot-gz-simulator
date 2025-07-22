@@ -7,18 +7,19 @@
 # marsyard2020_walls.sdf / marsyard2020_walls
 
 # indoor.sdf  tunnel.sdf  cave_world.sdf   moon.sdf  mars.sdf  marsyard2020.sdf  marsyard2020_walls.sdf  marsyard2021.sdf  marsyard2022.sdf  inspection.sdf   
-world_file: marsyard2020_walls.sdf
-world_name: marsyard2020_walls                # for topic bridge (dependant of the environment name) - normally the same as world_file... but not always
+world_file: marsyard2022.sdf
+world_name: marsyard2022                # for topic bridge (dependant of the environment name) - normally the same as world_file... but not always
 
 ## Robot fleet properties
 robot_ns: fleet                 # for tf relay
 robots:
 - name: fleet_0
-  type: scoutv2
+  type: scoutv2_lidar
   pose: [0, 0, 3.5, 0, 0, 0]
 - name: fleet_1
+  type: scoutv2_zed
+  pose: [0, 2, 3.5, 0, 0, 0]  
+- name: fleet_2
   type: X3
   pose: [1., 1., 3.5, 0, 0, 0]
-#- name: fleet_2
-#  type: nasa_ingenuity
-#  pose: [2, -2.5, 3.6, 3.14, 0, 0]  
+

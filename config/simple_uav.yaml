@@ -1,0 +1,31 @@
+topics:
+# Controle related topics
+  - topic: "/model/{{ns}}/cmd_vel"
+    type: "geometry_msgs/msg/Twist"
+    gz_type: "gz.msgs.Twist"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/cmd_vel"
+
+  - topic: "/model/{{ns}}/odometry"
+    type: "nav_msgs/msg/Odometry"
+    gz_type: "gz.msgs.Odometry"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/odometry"
+
+  - topic: "/model/{{ns}}/odometry_with_covariance"
+    type: "nav_msgs/msg/Odometry"
+    gz_type: "gz.msgs.Odometry"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/odometry_with_covariance"
+
+  - topic: "/model/{{ns}}/pose"
+    type: "tf2_msgs/msg/TFMessage"
+    gz_type: "gz.msgs.Pose_V"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/tf"
+
+  - topic: "/model/{{ns}}/pose_static"
+    type: "tf2_msgs/msg/TFMessage"
+    gz_type: "gz.msgs.Pose_V"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/tf_static"

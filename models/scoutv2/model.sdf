@@ -363,17 +363,7 @@
             <robot_base_frame> base_link </robot_base_frame>            
         </plugin> -->
         
-        <plugin name='gz::sim::systems::PosePublisher' filename='libgz-sim-pose-publisher-system.so'>
-            <publish_link_pose>true</publish_link_pose>
-            <publish_sensor_pose>true</publish_sensor_pose>
-            <publish_collision_pose>false</publish_collision_pose>
-            <publish_visual_pose>false</publish_visual_pose>
-            <publish_nested_model_pose>false</publish_nested_model_pose>
-            <publish_model_pose>false</publish_model_pose>
-            <use_pose_vector_msg>true</use_pose_vector_msg>
-            <static_publisher>false</static_publisher>
-            <static_update_frequency>100</static_update_frequency>
-        </plugin>
+
 
 
 
@@ -443,26 +433,32 @@
                 <visualize>true</visualize>        
                 <pose>0.0099946700000000006 0.059999999999999998 0.048273700000000003 0 0.032637699999999999 0</pose>        
             </sensor>
-            <sensor name='zed2_depth_camera' type='depth_camera'>
+            <sensor name='zed2_depth_camera' type='rgbd_camera'>
                 <always_on>true</always_on>
                 <update_rate>10</update_rate>
                 <visualize>true</visualize>
                 <camera name='zed2_depth'>
-                <horizontal_fov>1.274</horizontal_fov>
-                <image>
-                    <width>640</width>
-                    <height>480</height>
-                    <format>R_FLOAT32</format>
-                </image>
-                <clip>
-                    <near>0.29999999999999999</near>
-                    <far>15</far>
-                </clip>
-                <noise>
-                    <type>gaussian</type>
-                    <mean>0</mean>
-                    <stddev>0.01</stddev>
-                </noise>
+                    <horizontal_fov>1.274</horizontal_fov>
+                    <image>
+                        <width>640</width>
+                        <height>480</height>
+                        <format>R8G8B8</format>
+                    </image>
+                    <clip>
+                        <near>0.29999999999999999</near>
+                        <far>300</far>
+                    </clip>
+                    <depth_camera>
+                        <clip>
+                            <near>0.1</near>
+                            <far>10</far>
+                        </clip>
+                    </depth_camera>
+                    <noise>
+                        <type>gaussian</type>
+                        <mean>0</mean>
+                        <stddev>0.01</stddev>
+                    </noise>
                 </camera>        
                 <pose>0.0099946700000000006 0.059999999999999998 0.048273700000000003 0 0.032637699999999999 0</pose>                
             </sensor>      
@@ -625,14 +621,24 @@
 
 
 
-      <plugin name='gz::sim::systems::OdometryPublisher' filename='gz-sim-odometry-publisher-system'>
-          <dimensions>3</dimensions>
-          <odom_publish_frequency>10.0</odom_publish_frequency>
-          <odom_frame> {{ name }}::odom </odom_frame>
-          <robot_base_frame> {{ name }} </robot_base_frame>            
-      </plugin>
+        <plugin name='gz::sim::systems::OdometryPublisher' filename='gz-sim-odometry-publisher-system'>
+            <dimensions>3</dimensions>
+            <odom_publish_frequency>10.0</odom_publish_frequency>
+            <odom_frame> map </odom_frame>
+            <robot_base_frame> {{ name }} </robot_base_frame>            
+        </plugin>
 
-
+        <plugin name='gz::sim::systems::PosePublisher' filename='libgz-sim-pose-publisher-system.so'>
+            <publish_link_pose>true</publish_link_pose>
+            <publish_sensor_pose>true</publish_sensor_pose>
+            <publish_collision_pose>false</publish_collision_pose>
+            <publish_visual_pose>false</publish_visual_pose>
+            <publish_nested_model_pose>false</publish_nested_model_pose>
+            <publish_model_pose>false</publish_model_pose>
+            <use_pose_vector_msg>true</use_pose_vector_msg>
+            <static_publisher>false</static_publisher>
+            <static_update_frequency>100</static_update_frequency>
+        </plugin>
 
     </model>
 </sdf>

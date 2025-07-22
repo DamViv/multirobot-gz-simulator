@@ -107,7 +107,7 @@ topics:
     direction: "gz_to_ros"
     remap: "/{{ns}}/zed2i/depth_camera/camera_info"
 
-  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_depth_camera/depth_image/points"
+  - topic: "/world/{{world}}/model/{{ns}}/link/zed2_sensor/sensor/zed2_depth_camera/points"
     type: "sensor_msgs/msg/PointCloud2"
     gz_type: "gz.msgs.PointCloudPacked"
     direction: "gz_to_ros"

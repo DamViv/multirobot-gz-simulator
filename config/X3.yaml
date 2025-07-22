@@ -1,0 +1,69 @@
+topics:
+  # Controle related topics
+  - topic: "/{{ns}}/gazebo/command/twist"
+    type: "geometry_msgs/msg/Twist"
+    gz_type: "gz.msgs.Twist"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/cmd_vel"
+
+  # - topic: "/{{ns}}/gazebo/command/motor_speed"
+  #   type: "geometry_msgs/msg/Actuators"
+  #   gz_type: "gz.msgs.Actuators"
+  #   direction: "ros_to_gz"
+  #   remap: "/{{ns}}/motor_speed"
+
+  - topic: "/model/{{ns}}/odometry"
+    type: "nav_msgs/msg/Odometry"
+    gz_type: "gz.msgs.Odometry"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/odometry"
+
+  - topic: "/model/{{ns}}/odometry_with_covariance"
+    type: "nav_msgs/msg/Odometry"
+    gz_type: "gz.msgs.Odometry"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/odometry_with_covariance"
+
+  - topic: "/model/{{ns}}/pose"
+    type: "tf2_msgs/msg/TFMessage"
+    gz_type: "gz.msgs.Pose_V"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/tf"
+
+  - topic: "/model/{{ns}}/pose_static"
+    type: "tf2_msgs/msg/TFMessage"
+    gz_type: "gz.msgs.Pose_V"
+    direction: "ros_to_gz"
+    remap: "/{{ns}}/tf_static"
+
+  # Simple IMU related topics
+  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/imu_sensor/imu"
+    type: "sensor_msgs/msg/Imu"
+    gz_type: "gz.msgs.IMU"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/imu"
+
+  # Camera related topics
+  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/camera_front/image"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/camera/image"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/camera_front/camera_info"
+    type: "sensor_msgs/msg/CameraInfo"
+    gz_type: "gz.msgs.CameraInfo"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/camera/camera_info"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/camera_front/depth_image"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/camera/depth_image"
+
+  - topic: "/world/{{world}}/model/{{ns}}/link/base_link/sensor/camera_front/points"
+    type: "sensor_msgs/msg/PointCloud2"
+    gz_type: "gz.msgs.PointCloudPacked"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/camera/points"

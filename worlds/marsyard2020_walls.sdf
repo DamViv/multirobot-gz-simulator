@@ -2,8 +2,8 @@
 <sdf version="1.8">
   <world name="marsyard2020_walls">
     <physics name="1ms" type="ignored">
-      <max_step_size>0.001</max_step_size>
-      <real_time_factor>1.0</real_time_factor>
+      <max_step_size>0.005</max_step_size>      
+      <real_time_factor>1</real_time_factor>
       <dart>
         <collision_detector>bullet</collision_detector>
       </dart>

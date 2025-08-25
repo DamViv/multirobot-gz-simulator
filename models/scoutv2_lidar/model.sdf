@@ -49,9 +49,9 @@
             <sensor name="imu_sensor" type="imu">
                 <always_on>1</always_on>
                 <update_rate>50</update_rate>
-                <imu>
+                <imu>                    
                     <enable_orientation>1</enable_orientation>
-                    <!-- <angular_velocity>
+                    <angular_velocity>
                         <x>
                             <noise type="gaussian">
                                 <mean>0</mean>
@@ -120,7 +120,7 @@
                                 <precision>0.005</precision>
                             </noise>
                         </z>
-                    </linear_acceleration> -->
+                    </linear_acceleration>
                 </imu>
             </sensor>
         </link>
@@ -553,11 +553,18 @@
 
 
         <link name="os_imu">
-            <sensor name="os_imu" type="imu">      
-                <always_on>1</always_on>
-                <update_rate>50</update_rate>
-                <visualize>true</visualize>
-            </sensor>
+            <inertial>
+                <mass>1.0</mass>
+                <inertia>
+                <ixx>0.01</ixx><iyy>0.01</iyy><izz>0.01</izz>
+                <ixy>0.0</ixy><ixz>0.0</ixz><iyz>0.0</iyz>
+                </inertia>
+            </inertial>
+            <sensor name="os_imu" type="imu">                      
+                <always_on>true</always_on>
+                <update_rate>100</update_rate>
+                <visualize>true</visualize>                    
+            </sensor>           
         </link>
         <joint name="os_sensor_imu_link_joint" type="fixed">
             <parent> os_sensor </parent>
@@ -587,14 +594,33 @@
                         </vertical>
                     </scan>
                     <range>
-                        <min>0.1</min>
-                        <max>40</max>
-                        <resolution>0.03</resolution>
+                        <min>0.5</min>
+                        <max>30</max>
+                        <resolution>0.01</resolution>
                     </range>
                 </lidar>
                 <always_on>1</always_on>
                 <visualize>true</visualize>                
-            </sensor>        
+            </sensor>   
+
+            <sensor name='camera' type='camera'>
+                <pose>0 0 0.5 0 0 0</pose>        
+                <camera name='camera'>
+                <horizontal_fov>1.7633000000000001</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.050000000000000003</near>
+                    <far>50</far>
+                </clip>
+                </camera>
+                <always_on>true</always_on>
+                <update_rate>10</update_rate>
+                <visualize>true</visualize>                    
+            </sensor>
         </link>
         <joint name="os_sensor_lidar_link_joint" type="fixed">
             <parent> os_sensor </parent>
@@ -641,6 +667,10 @@
             <use_pose_vector_msg>true</use_pose_vector_msg>
             <static_publisher>false</static_publisher>
             <static_update_frequency>10</static_update_frequency>
+        </plugin>
+
+        <plugin filename="gz-sim-imu-system"
+                name="gz::sim::systems::Imu">
         </plugin>
 
     </model>

@@ -7,8 +7,8 @@
 # marsyard2020_walls.sdf / marsyard2020_walls
 
 # indoor.sdf  tunnel.sdf  cave_world.sdf   moon.sdf  mars.sdf  marsyard2020.sdf  marsyard2020_walls.sdf  marsyard2021.sdf  marsyard2022.sdf  inspection.sdf   
-world_file: marsyard2022.sdf
-world_name: marsyard2022                # for topic bridge (dependant of the environment name) - normally the same as world_file... but not always
+world_file: marsyard2020_walls.sdf
+world_name: marsyard2020_walls                # for topic bridge (dependant of the environment name) - normally the same as world_file... but not always
 
 ## Robot fleet properties
 robot_ns: fleet                 # for tf relay

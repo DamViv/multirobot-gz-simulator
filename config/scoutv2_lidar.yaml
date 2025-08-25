@@ -59,3 +59,10 @@ topics:
     gz_type: "gz.msgs.PointCloudPacked"
     direction: "gz_to_ros"
     remap: "/{{ns}}/os_lidar/points"
+
+  # simple camera
+  - topic: "/world/{{world}}/model/{{ns}}/link/os_lidar/sensor/camera/image"
+    type: "sensor_msgs/msg/Image"
+    gz_type: "gz.msgs.Image"
+    direction: "gz_to_ros"
+    remap: "/{{ns}}/camera/image"

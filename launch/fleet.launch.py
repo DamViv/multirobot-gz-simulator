@@ -86,7 +86,7 @@ def spawn_robot_generic(context, namespace, world, config_path):
             }
         ],
         remappings=remappings,
-        output="log"
+        output="screen"
     )
 
     return [LogInfo(msg=[f"Spawning bridge for robot: {robot_ns} in world: {world_name}"]), bridge_node]
@@ -189,7 +189,7 @@ def generate_launch_description():
                 "-Y", str(pose[5]),  # Yaw
                 "-file", model_sdf_path,                
             ],
-            output="log"
+            output="screen"
         )
         launch_nodes_robots.append(spawn_node)
 
@@ -201,7 +201,7 @@ def generate_launch_description():
     tf_relay = Node(        
         package="tf_relay",
         executable="relay",        
-        output="log",
+        output="screen",
         on_exit=Shutdown(),
         arguments=[robot_namespace, str(len(robot_list))],  # namespace and number of agents
     )

@@ -639,5 +639,9 @@
             <static_update_frequency>10</static_update_frequency>
         </plugin>
 
+        <plugin filename="gz-sim-imu-system"
+                name="gz::sim::systems::Imu">
+        </plugin>
+
     </model>
 </sdf>

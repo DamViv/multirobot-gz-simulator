@@ -133,6 +133,21 @@ def generate_launch_description():
         }.items(),        
     )
 
+    # Bridge the clock from the gazebo simulator
+    clock_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        name="clock_bridge",
+        arguments=[
+            "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",            
+        ],
+        parameters=[
+            {
+                "qos_overrides./tf_static.publisher.durability": "transient_local",
+            }
+        ],
+        output="screen",
+    )
 
 
     ##########################################################################################
@@ -142,7 +157,7 @@ def generate_launch_description():
     # prepare the automatic remapping for each robot provided in the list    
     declare_args = []
     opaque_functions = []
-    launch_nodes_robots = []
+    launch_nodes_robots = []    
 
     for i, robot in enumerate(robot_list, start=1): #i, (name, r_model, r_pose) in enumerate(zip(robot_names, robot_models, robot_poses), start=1):
         name = robot['name']
@@ -212,7 +227,7 @@ def generate_launch_description():
     ##########################################################################################
     return LaunchDescription([
         # launch the world in Gazebo
-        world_file_arg, gz_sim_launch,
+        world_file_arg, gz_sim_launch, clock_bridge,
         
         # launch the robots fleet in Gazebo     
         *declare_args,        

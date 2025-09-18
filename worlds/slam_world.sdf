@@ -1,0 +1,207 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+    <world name="slam_world">
+        <physics name="1ms" type="ignored">
+            <max_step_size>0.001</max_step_size>
+            <real_time_factor>1.0</real_time_factor>
+        </physics>
+        <plugin
+            filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics">
+        </plugin>        
+        <plugin
+            filename="gz-sim-sensors-system"
+            name="gz::sim::systems::Sensors">
+            <render_engine>ogre2</render_engine>
+        </plugin>        
+        <plugin
+            filename="gz-sim-user-commands-system"
+            name="gz::sim::systems::UserCommands">
+        </plugin>
+        <plugin
+            filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster">
+        </plugin>
+
+        <light type="directional" name="sun">
+            <cast_shadows>true</cast_shadows>
+            <pose>0 0 10 0 0 0</pose>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <attenuation>
+                <range>1000</range>
+                <constant>0.9</constant>
+                <linear>0.01</linear>
+                <quadratic>0.001</quadratic>
+            </attenuation>
+            <direction>-0.5 0.1 -0.9</direction>
+        </light>
+
+        <model name="ground_plane">
+            <static>true</static>
+            <link name="link">
+                <collision name="collision">
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    </plane>
+                </geometry>
+                </collision>
+                <visual name="visual">
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    <size>100 100</size>
+                    </plane>
+                </geometry>
+                <material>
+                    <ambient>0.8 0.8 0.8 1</ambient>
+                    <diffuse>0.8 0.8 0.8 1</diffuse>
+                    <specular>0.8 0.8 0.8 1</specular>
+                </material>
+                </visual>
+            </link>
+        </model>
+
+        <!-- 20 plots aléatoires -->
+        <model name="cone_1">
+        <pose>1.23 5.67 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>            
+        </include>
+        </model>
+
+        <model name="cone_2">
+        <pose>8.12 -2.34 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_3">
+        <pose>-4.5 9.2 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_4">
+        <pose>12.1 -7.3 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_5">
+        <pose>-10.5 2.8 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_6">
+        <pose>6.5 11.0 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_7">
+        <pose>-8.3 -4.1 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_8">
+        <pose>3.7 -12.5 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_9">
+        <pose>0.0 7.5 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_10">
+        <pose>-6.6 3.3 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_11">
+        <pose>9.8 1.2 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_12">
+        <pose>-11.0 -6.5 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_13">
+        <pose>5.4 -9.7 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_14">
+        <pose>2.2 13.1 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_15">
+        <pose>-7.9 8.8 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_16">
+        <pose>10.0 -10.0 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_17">
+        <pose>-2.5 -11.2 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_18">
+        <pose>4.6 4.6 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_19">
+        <pose>-9.1 0.0 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>
+
+        <model name="cone_20">
+        <pose>0.0 -5.0 0 0 0 0</pose>
+        <include>
+            <uri>model://construction_cone</uri>
+        </include>
+        </model>        
+    </world>
+</sdf>

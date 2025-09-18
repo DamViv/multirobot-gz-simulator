@@ -598,6 +598,11 @@
                         <max>30</max>
                         <resolution>0.01</resolution>
                     </range>
+                    <noise>
+                        <type>gaussian</type>
+                        <mean>0.0</mean>
+                        <stddev>0.0001</stddev>
+                    </noise>
                 </lidar>
                 <always_on>1</always_on>
                 <visualize>true</visualize>                

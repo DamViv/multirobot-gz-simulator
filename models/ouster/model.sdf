@@ -8,7 +8,7 @@
     <xacro:property name="samples" value="512"/>
     <xacro:property name="min_range" value="0.1"/>
     <xacro:property name="max_range" value="30.0"/>
-    <xacro:property name="noise" value="0.008"/>
+    <xacro:property name="noise" value="0.00"/>
     <xacro:property name="min_angle" value="-${M_PI}"/>
     <xacro:property name="max_angle" value="${M_PI}"/>
     <xacro:property name="vfov_min" value="-0.785"/>    

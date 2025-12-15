@@ -71,6 +71,9 @@ robots:
 ros2 launch multirobot_gz_simulator fleet.launch.py
 ```
 
+Option 2:
+- use the simu.py ihm script
+
 
 ## Dependencies
 
